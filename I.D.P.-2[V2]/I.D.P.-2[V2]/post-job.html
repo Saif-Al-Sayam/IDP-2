@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Job - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">JobPortal</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find-jobs.html">Find Jobs</a></li>
+                <li><a href="post-job.html" class="active">Post Job</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons" id="authSection">
+                <!-- Dynamically populated by auth.js -->
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Post Job Section -->
+    <section class="post-job">
+        <div class="container">
+            <div class="post-job-header">
+                <h1>Post a New Job</h1>
+                <p>Fill out the form below to list your job opening</p>
+            </div>
+            
+            <form id="postJobForm" class="job-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobTitle">Job Title *</label>
+                        <input type="text" id="jobTitle" placeholder="e.g. Senior Web Developer" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company *</label>
+                        <input type="text" id="company" placeholder="Your company name" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobType">Job Type *</label>
+                        <select id="jobType" required>
+                            <option value="">Select job type</option>
+                            <option value="full-time">Full Time</option>
+                            <option value="part-time">Part Time</option>
+                            <option value="contract">Contract</option>
+                            <option value="internship">Internship</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location *</label>
+                        <input type="text" id="location" placeholder="e.g. New York, NY" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="salary">Salary Range</label>
+                        <input type="text" id="salary" placeholder="e.g. $80,000 - $100,000">
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Experience Level</label>
+                        <select id="experience">
+                            <option value="">Select experience level</option>
+                            <option value="entry">Entry Level</option>
+                            <option value="mid">Mid Level</option>
+                            <option value="senior">Senior Level</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Job Description *</label>
+                    <textarea id="description" placeholder="Describe the job responsibilities and requirements..." rows="6" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requirements">Requirements *</label>
+                    <textarea id="requirements" placeholder="List the required skills and qualifications..." rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="benefits">Benefits (optional)</label>
+                    <textarea id="benefits" placeholder="List any benefits offered..." rows="3"></textarea>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-large">Post Job</button>
+                    <button type="button" class="btn btn-outline" onclick="window.history.back()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <!-- Same modal content as index.html -->
+    </div>
+
+    <!-- Notification System -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/job-posting.js"></script>
+</body>
+</html>

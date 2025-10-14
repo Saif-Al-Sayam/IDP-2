@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Jobs - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">JobPortal</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find-jobs.html" class="active">Find Jobs</a></li>
+                <li><a href="post-job.html">Post Job</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="auth-buttons" id="authSection">
+                <!-- Dynamically populated by auth.js -->
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Jobs Search Section -->
+    <section class="jobs-search">
+        <div class="container">
+            <h1>Find Your Next Opportunity</h1>
+            
+            <!-- Search Filters -->
+            <div class="search-filters">
+                <div class="filter-group">
+                    <input type="text" id="jobTitle" placeholder="Job title or keyword">
+                </div>
+                <div class="filter-group">
+                    <input type="text" id="location" placeholder="Location">
+                </div>
+                <div class="filter-group">
+                    <select id="jobType">
+                        <option value="">Job Type</option>
+                        <option value="full-time">Full Time</option>
+                        <option value="part-time">Part Time</option>
+                        <option value="contract">Contract</option>
+                        <option value="remote">Remote</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Jobs Listing -->
+    <section class="jobs-listing">
+        <div class="container">
+            <div class="jobs-container">
+                <div class="jobs-sidebar">
+                    <h3>Filters</h3>
+                    <div class="filter-section">
+                        <h4>Salary Range</h4>
+                        <input type="range" min="0" max="200000" value="50000" class="salary-range">
+                        <span class="salary-value">$50,000</span>
+                    </div>
+                    <div class="filter-section">
+                        <h4>Experience Level</h4>
+                        <label><input type="checkbox" value="entry"> Entry Level</label>
+                        <label><input type="checkbox" value="mid"> Mid Level</label>
+                        <label><input type="checkbox" value="senior"> Senior Level</label>
+                    </div>
+                </div>
+                
+                <div class="jobs-results">
+                    <div class="jobs-header">
+                        <h2>Available Jobs</h2>
+                        <span class="jobs-count">24 jobs found</span>
+                    </div>
+                    
+                    <div class="jobs-list" id="jobsList">
+                        <!-- Jobs will be populated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <!-- Same modal content as index.html -->
+    </div>
+
+    <!-- Notification System -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/jobs.js"></script>
+</body>
+</html>
