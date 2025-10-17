@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employer Dashboard - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">JobPortal</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="find-jobs.html">Find Jobs</a></li>
+                <li><a href="post-job.html">Post Job</a></li>
+                <li><a href="employer-dashboard.html" class="active">Dashboard</a></li>
+            </ul>
+            <div class="auth-buttons" id="authSection">
+                <!-- Dynamically populated -->
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Employer Dashboard Section -->
+    <section class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Employer Dashboard</h1>
+                <p>Manage your job postings and applications</p>
+                <a href="post-job.html" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> Post New Job
+                </a>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Active Jobs</h3>
+                        <span class="stat-number" id="activeJobsCount">0</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Total Applications</h3>
+                        <span class="stat-number" id="totalApplications">0</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>Profile Views</h3>
+                        <span class="stat-number" id="profileViews">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="dashboard-section">
+                    <div class="section-header">
+                        <h2>Your Job Postings</h2>
+                        <a href="post-job.html" class="btn btn-outline btn-small">
+                            <i class="fas fa-plus"></i> Add Job
+                        </a>
+                    </div>
+                    <div class="jobs-list" id="employerJobsList">
+                        <!-- Employer's jobs will be populated here -->
+                    </div>
+                </div>
+                
+                <div class="dashboard-section">
+                    <h2>Recent Applications</h2>
+                    <div class="applications-list" id="employerApplicationsList">
+                        <!-- Applications to employer's jobs -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <!-- Same modal content as index.html -->
+    </div>
+
+    <!-- Notification System -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/employer-dashboard.js"></script>
+</body>
+</html>

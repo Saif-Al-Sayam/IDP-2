@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="auth-page">
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">JobPortal</a>
+            </div>
+            <div class="auth-buttons">
+                <span>Already have an account?</span>
+                <a href="login.html" class="btn btn-outline">Log In</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Signup Section -->
+    <section class="auth-section">
+        <div class="auth-container">
+            <div class="auth-card">
+                <h1>Create Your Account</h1>
+                <p>Join thousands of job seekers and employers</p>
+                
+                <form id="signupForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="accountType">I am a</label>
+                        <select id="accountType" required>
+                            <option value="">Select account type</option>
+                            <option value="job_seeker">Job Seeker</option>
+                            <option value="employer">Employer</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Create a password" required minlength="6">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="login.html">Log in here</a></p>
+                    <p>By creating an account, you agree to our <a href="#">Terms of Service</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notification System -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                accountType: document.getElementById('accountType').value,
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirmPassword').value
+            };
+            
+            if (formData.password !== formData.confirmPassword) {
+                showNotification('Passwords do not match', 'error');
+                return;
+            }
+            
+            if (formData.password.length < 6) {
+                showNotification('Password must be at least 6 characters', 'error');
+                return;
+            }
+            
+            // Simulate signup process
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
+            submitBtn.disabled = true;
+            
+            simulateAuthRequest('signup', formData)
+                .then(user => {
+                    showNotification('Account created successfully!', 'success');
+                    setTimeout(() => {
+                        window.location.href = user.accountType === 'employer' ? 'employer-dashboard.html' : 'dashboard.html';
+                    }, 1000);
+                })
+                .catch(error => {
+                    showNotification(error.message, 'error');
+                })
+                .finally(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+    </script>
+</body>
+</html>
