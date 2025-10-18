@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - JobPortal</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html">JobPortal</a>
+            </div>
+            <div class="auth-buttons" id="authSection">
+                <!-- Dynamic content will be loaded by auth.js -->
+            </div>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="container">
+            <div id="jobSeekerDashboard" style="display: none;">
+                <h1>Job Seeker Dashboard</h1>
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Applications</h3>
+                        <span id="applicationsCount">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Saved Jobs</h3>
+                        <span id="savedJobsCount">0</span>
+                    </div>
+                </div>
+                
+                <h2>Your Applications</h2>
+                <div id="applicationsList"></div>
+            </div>
+
+            <div id="employerDashboard" style="display: none;">
+                <h1>Employer Dashboard</h1>
+                <button class="btn btn-primary" onclick="showJobForm()">Post New Job</button>
+                
+                <div class="stats">
+                    <div class="stat-card">
+                        <h3>Active Jobs</h3>
+                        <span id="activeJobsCount">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Applications</h3>
+                        <span id="totalApplications">0</span>
+                    </div>
+                </div>
+                
+                <h2>Your Job Postings</h2>
+                <div id="employerJobsList"></div>
+            </div>
+
+            <!-- Job Posting Form -->
+            <div id="jobForm" style="display: none;">
+                <h2>Post a Job</h2>
+                <form id="postJobForm">
+                    <div class="form-group">
+                        <input type="text" name="title" placeholder="Job Title" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="company" placeholder="Company" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="type" required>
+                            <option value="">Job Type</option>
+                            <option value="full-time">Full Time</option>
+                            <option value="part-time">Part Time</option>
+                            <option value="remote">Remote</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="location" placeholder="Location" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="salary" placeholder="Salary Range">
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" placeholder="Job Description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post Job</button>
+                    <button type="button" class="btn btn-outline" onclick="hideJobForm()">Cancel</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        function showJobForm() {
+            document.getElementById('jobForm').style.display = 'block';
+        }
+        
+        function hideJobForm() {
+            document.getElementById('jobForm').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
