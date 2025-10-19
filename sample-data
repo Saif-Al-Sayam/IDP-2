@@ -1,0 +1,23 @@
+id,name,age,salary,start_date,end_date,department,status
+1,John Smith,25,50000,2023-01-15,2022-12-01,Sales,Active
+1,John Smith,30,50000,2023-01-15,2024-01-15,Sales,Active
+2,Jane Doe,-5,75000,2023-03-10,2024-03-10,Marketing,Active
+3,Bob Johnson,35,-1000,2023-02-20,2023-01-15,IT,Inactive
+4,Alice Brown,28,60000,2023-04-05,2023-04-05,HR,Active
+5,Alice Brown,28,60000,2023-04-05,2023-04-05,HR,Terminated
+6,Charlie Wilson,200,80000,2023-01-10,2024-01-10,Finance,Active
+7,Diana Lee,,90000,2023-05-20,2024-05-20,Sales,Active
+8,Frank Miller,42,55000,2023-06-15,2024-06-15,IT,Active
+8,Frank Miller,42,65000,2023-06-15,2024-06-15,IT,Active
+9,Grace Kim,29,72000,2024-01-01,2023-12-01,Marketing,Active
+10,Henry Davis,33,48000,2023-03-25,2024-03-25,,Active
+11,Henry Davis,33,48000,2023-03-25,2024-03-25,Operations,Active
+12,Ivy Chen,26,51000,2023-07-10,2024-07-10,Sales,Active
+13,Sam Patel,45,95000,2023-08-22,2024-08-22,IT,Active
+14,Lisa Wong,31,58000,2023-09-05,2024-09-05,HR,Active
+15,Lisa Wong,31,58000,2023-09-05,2024-09-05,HR,Active
+16,Mike Taylor,38,82000,2023-10-18,2024-10-18,Finance,Active
+17,Sarah Evans,27,53000,2023-11-30,2024-11-30,Marketing,Active
+18,Kevin Adams,41,77000,2023-12-12,2024-12-12,IT,Active
+19,Kevin Adams,41,77000,2023-12-12,2024-12-12,IT,Suspended
+20,Nina Rodriguez,34,69000,2024-02-14,2025-02-14,Sales,Active
