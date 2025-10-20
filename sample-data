@@ -103,4 +103,3 @@ id,name,age,salary,start_date,end_date,department,performance_score,manager_id,b
 98,Austin Reed,27,56000,2025-03-20,2026-03-20,Sales,83,101,5600
 99,Brianna Stewart,34,71000,2025-04-25,2026-04-25,Marketing,90,102,7100
 100,Brianna Stewart,34,71000,2025-04-25,2026-04-25,Marketing,90,102,7100
-... (continues with same pattern up to 1000 rows)
