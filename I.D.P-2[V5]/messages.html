@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="messages.html" class="active">Messages</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Messages</h1>
+            <p>Communicate with employers and workers</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="conversations-list">
+                <div class="conversations-header">
+                    <h3>Conversations</h3>
+                    <input type="text" placeholder="Search conversations..." id="searchConversations">
+                </div>
+                
+                <!-- Start New Conversation Section -->
+                <div class="start-conversation-section">
+                    <h4>Start New Conversation</h4>
+                    <div class="quick-contacts" id="quickContacts">
+                        <!-- Will be populated with recent work contacts -->
+                    </div>
+                    <button class="btn btn-outline btn-full" onclick="app.showNewConversationModal()">
+                        + New Message
+                    </button>
+                </div>
+
+                <div class="conversations" id="conversationsList">
+                    <!-- Conversations will be loaded here -->
+                </div>
+            </div>
+
+            <div class="chat-window">
+                <div class="chat-header" id="chatHeader">
+                    <div class="chat-user-info">
+                        <div class="avatar" id="chatUserAvatar">U</div>
+                        <div>
+                            <h4 id="chatUserName">Select a conversation</h4>
+                            <span id="chatUserStatus">-</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messagesContainer">
+                    <div class="no-chat-selected">
+                        <p>Select a conversation to start messaging</p>
+                    </div>
+                </div>
+
+                <div class="message-input" style="display: none;" id="messageInputArea">
+                    <div class="input-group">
+                        <input type="text" id="messageText" placeholder="Type your message...">
+                        <button class="btn btn-primary" id="sendMessageBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Conversation Modal -->
+    <div id="newConversationModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="app.closeNewConversationModal()">&times;</span>
+            <h2>New Message</h2>
+            <div class="form-group">
+                <input type="text" id="searchUser" placeholder="Search users by name or email..." onkeyup="app.searchUsers(this.value)">
+            </div>
+            <div id="userSearchResults" class="search-results">
+                <!-- User search results will appear here -->
+            </div>
+            <div class="recent-contacts">
+                <h4>Recent Contacts</h4>
+                <div id="recentContactsList">
+                    <!-- Recent contacts will appear here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

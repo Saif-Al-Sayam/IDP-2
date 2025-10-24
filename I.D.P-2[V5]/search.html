@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Work - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html" class="active">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Find Local Work</h1>
+            <p>Discover opportunities in your area</p>
+        </div>
+
+        <div class="search-section">
+            <div class="search-grid">
+                <div class="form-group">
+                    <input type="text" id="searchKeyword" placeholder="What work are you looking for?">
+                </div>
+                <div class="form-group">
+                    <select id="searchCategory">
+                        <option value="">All Categories</option>
+                        <option value="delivery">Delivery</option>
+                        <option value="cleaning">Cleaning</option>
+                        <option value="repair">Repair</option>
+                        <option value="teaching">Teaching</option>
+                        <option value="event">Event Help</option>
+                        <option value="sales">Sales Assistance</option>
+                        <option value="cooking">Cooking/Food</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="searchDivision">
+                        <option value="">All Divisions</option>
+                        <option value="dhaka">Dhaka</option>
+                        <option value="chattogram">Chattogram</option>
+                        <option value="rajshahi">Rajshahi</option>
+                        <option value="khulna">Khulna</option>
+                        <option value="barishal">Barishal</option>
+                        <option value="sylhet">Sylhet</option>
+                        <option value="rangpur">Rangpur</option>
+                        <option value="mymensingh">Mymensingh</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="searchDistrict" placeholder="District">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="searchArea" placeholder="Area/Thana">
+                </div>
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+            </div>
+            
+            <div class="filter-options" style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                <label>
+                    <input type="checkbox" id="filterUrgent"> Urgent Work
+                </label>
+                <label>
+                    <input type="checkbox" id="filterToday"> Today Only
+                </label>
+                <select id="sortBy" style="margin-left: auto;">
+                    <option value="newest">Newest First</option>
+                    <option value="budget_high">Highest Budget</option>
+                    <option value="budget_low">Lowest Budget</option>
+                    <option value="nearest">Nearest First</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="work-grid" id="workResults">
+            <!-- Work results will be loaded here -->
+        </div>
+
+        <div id="loadingIndicator" style="text-align: center; padding: 2rem; display: none;">
+            <p>Loading work opportunities...</p>
+        </div>
+
+        <div id="noResults" style="text-align: center; padding: 2rem; display: none;">
+            <h3>No work found</h3>
+            <p>Try adjusting your search criteria or check back later.</p>
+        </div>
+    </div>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal">&times;</span>
+            <h2>Apply for Work</h2>
+            <form id="applicationForm">
+                <input type="hidden" id="applyWorkId">
+                <div class="form-group">
+                    <label>Your Proposal</label>
+                    <textarea id="proposalText" placeholder="Describe why you're suitable for this work..." required rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Your Bid (৳)</label>
+                    <input type="number" id="bidAmount" placeholder="Enter your bid amount" step="0.01" min="0">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Application</button>
+                    <button type="button" class="btn btn-outline" onclick="closeApplicationModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

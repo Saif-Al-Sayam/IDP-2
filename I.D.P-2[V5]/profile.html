@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="profile.html" class="active">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Your Profile</h1>
+            <p>Manage your account and preferences</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="content-card">
+                <h2>Profile Information</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" name="full_name" id="profileName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" id="profileEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Phone *</label>
+                        <input type="tel" name="phone" id="profilePhone" required>
+                    </div>
+                    
+                    <!-- Bangladesh Location Fields -->
+                    <div class="form-group">
+                        <label>Division *</label>
+                        <select name="division" id="profileDivision" required>
+                            <option value="">Select Division</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="chattogram">Chattogram</option>
+                            <option value="rajshahi">Rajshahi</option>
+                            <option value="khulna">Khulna</option>
+                            <option value="barishal">Barishal</option>
+                            <option value="sylhet">Sylhet</option>
+                            <option value="rangpur">Rangpur</option>
+                            <option value="mymensingh">Mymensingh</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>District *</label>
+                            <input type="text" name="district" id="profileDistrict" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Postal Code *</label>
+                            <input type="text" name="post_code" id="profilePostCode" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Area/Thana *</label>
+                        <input type="text" name="area" id="profileArea" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Bio</label>
+                        <textarea name="bio" id="profileBio" placeholder="Tell others about yourself..." rows="4"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Skills (for workers)</label>
+                        <textarea name="skills" id="profileSkills" placeholder="List your skills separated by commas..." rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </form>
+            </div>
+
+            <div class="content-card">
+                <h2>Account Statistics</h2>
+                <div class="stats-mini">
+                    <div class="stat-item">
+                        <span class="stat-label">Member Since</span>
+                        <span class="stat-value" id="memberSince">-</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Completed Jobs</span>
+                        <span class="stat-value" id="completedJobs">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Success Rate</span>
+                        <span class="stat-value" id="successRate">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Response Time</span>
+                        <span class="stat-value" id="responseTime">-</span>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Recent Reviews</h3>
+                <div id="recentReviews">
+                    <p>No reviews yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
