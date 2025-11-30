@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Applications - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="applications.html" class="active">Applications</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Work Applications</h1>
+            <p>Manage applications for your work posts</p>
+        </div>
+
+        <div class="applications-filters">
+            <div class="filter-tabs">
+                <button class="tab-btn active" data-tab="all">All Applications</button>
+                <button class="tab-btn" data-tab="pending">Pending</button>
+                <button class="tab-btn" data-tab="accepted">Accepted</button>
+                <button class="tab-btn" data-tab="rejected">Rejected</button>
+            </div>
+        </div>
+
+        <div class="applications-container" id="applicationsContainer">
+            <div class="loading-state">
+                <p>Loading applications...</p>
+            </div>
+        </div>
+
+        <div id="noApplications" style="display: none; text-align: center; padding: 3rem;">
+            <h3>No applications yet</h3>
+            <p>Applications for your work posts will appear here.</p>
+            <a href="post-work.html" class="btn btn-primary" style="margin-top: 1rem;">Post New Work</a>
+        </div>
+    </div>
+
+    <!-- Application Details Modal -->
+    <div id="applicationModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="close-modal" onclick="app.closeApplicationModal()">&times;</span>
+            <h2>Application Details</h2>
+            <div id="applicationDetails">
+                <!-- Application details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
