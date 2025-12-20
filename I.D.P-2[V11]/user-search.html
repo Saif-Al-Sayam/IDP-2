@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Users - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .search-input-group {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        
+        .search-input-group button {
+            padding: 12px 24px;
+            white-space: nowrap;
+        }
+        
+        .search-stats {
+            color: #718096;
+            font-size: 14px;
+            margin-top: 1rem;
+        }
+        
+        .user-results {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .user-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .user-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .user-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .user-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .user-info {
+            flex: 1;
+        }
+        
+        .user-name {
+            margin: 0 0 0.5rem 0;
+            color: #2d3748;
+        }
+        
+        .user-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 14px;
+            color: #718096;
+        }
+        
+        .user-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .badge-employer {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+        
+        .badge-worker {
+            background: #bee3f8;
+            color: #2c5282;
+        }
+        
+        .rating-display {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .stars {
+            color: #fbbf24;
+        }
+        
+        .reviews-section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .reviews-title {
+            color: #4a5568;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .review-card {
+            background: #f7fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .reviewer-name {
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        .review-rating {
+            color: #fbbf24;
+        }
+        
+        .review-work {
+            font-style: italic;
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .review-comment {
+            color: #2d3748;
+            line-height: 1.5;
+        }
+        
+        .review-date {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-top: 0.5rem;
+            text-align: right;
+        }
+        
+        .no-reviews {
+            text-align: center;
+            padding: 2rem;
+            color: #718096;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+        
+        .error-message {
+            text-align: center;
+            padding: 2rem;
+            background: #fee2e2;
+            color: #dc2626;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #718096;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="applications.html" id="applicationsLink" style="display: none;">Applications</a></li>
+                <li><a href="completed-work.html">Completed Work</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="user-search.html" class="active">Search Users</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Search Users</h1>
+            <p>Find and view user profiles and reviews</p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-input-group">
+                <input type="text" id="searchInput" placeholder="Search by name or email..." autofocus>
+                <button class="btn btn-primary" onclick="searchUsers()">Search</button>
+            </div>
+            <p class="search-stats">Search for users by their name or email address to view their profiles and reviews.</p>
+            <div id="searchStats" class="search-stats" style="display: none;">
+                Found <span id="resultCount">0</span> users
+            </div>
+        </div>
+
+        <div id="searchResults" class="user-results">
+            <div class="no-results" id="initialMessage">
+                <p>Enter a name or email in the search box above to find users.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+            }
+            
+            // Add enter key support for search
+            document.getElementById('searchInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchUsers();
+                }
+            });
+            
+            updateNavigation();
+        });
+
+        function updateNavigation() {
+            const userMenu = document.getElementById('userMenu');
+            if (!userMenu) return;
+
+            if (currentUser) {
+                userMenu.innerHTML = `
+                    <div class="user-info">
+                        <div class="avatar">${currentUser.full_name?.charAt(0)?.toUpperCase() || 'U'}</div>
+                        <span>${currentUser.full_name}</span>
+                    </div>
+                    <button class="btn btn-outline" onclick="logout()">Logout</button>
+                `;
+                
+                const applicationsLinks = document.querySelectorAll('#applicationsLink');
+                applicationsLinks.forEach(link => {
+                    if (currentUser.user_type === 'employer') {
+                        link.style.display = 'block';
+                    } else {
+                        link.style.display = 'none';
+                    }
+                });
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        async function searchUsers() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.trim();
+            
+            if (!searchTerm) {
+                showNotification('Please enter a search term', 'error');
+                return;
+            }
+            
+            const resultsContainer = document.getElementById('searchResults');
+            const searchStats = document.getElementById('searchStats');
+            
+            // Hide initial message
+            const initialMessage = document.getElementById('initialMessage');
+            if (initialMessage) initialMessage.style.display = 'none';
+            
+            resultsContainer.innerHTML = '<div class="loading"><p>Searching users...</p></div>';
+            searchStats.style.display = 'none';
+            
+            try {
+                // USE THE SAME ENDPOINT AS MESSAGES SEARCH
+                const response = await fetch(`php/api.php?action=search_users&search_term=${encodeURIComponent(searchTerm)}&current_user_id=${currentUser.id}`);
+                const result = await response.json();
+                
+                console.log('Search result:', result); // Debug log
+                
+                if (result.success) {
+                    // The messages search returns basic user data, we need to fetch reviews separately
+                    const usersWithReviews = await Promise.all(
+                        result.data.map(async (user) => {
+                            // Fetch reviews for each user
+                            const reviewResponse = await fetch(`php/api.php?action=get_user_reviews&user_id=${user.id}`);
+                            const reviewResult = await reviewResponse.json();
+                            
+                            return {
+                                ...user,
+                                reviews: reviewResult.success ? reviewResult.data.slice(0, 5) : []
+                            };
+                        })
+                    );
+                    
+                    displayUsers(usersWithReviews);
+                    searchStats.style.display = 'block';
+                    document.getElementById('resultCount').textContent = usersWithReviews.length;
+                } else {
+                    resultsContainer.innerHTML = `<div class="error-message">${result.message}</div>`;
+                    searchStats.style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Search error:', error);
+                resultsContainer.innerHTML = '<div class="error-message">Error searching users. Please try again.</div>';
+                searchStats.style.display = 'none';
+            }
+        }
+
+        function displayUsers(users) {
+            const resultsContainer = document.getElementById('searchResults');
+            
+            if (!users || users.length === 0) {
+                resultsContainer.innerHTML = '<div class="no-results"><p>No users found. Try a different search term.</p></div>';
+                return;
+            }
+            
+            resultsContainer.innerHTML = users.map(user => `
+                <div class="user-card">
+                    <div class="user-header">
+                        <div class="user-avatar">${user.full_name?.charAt(0)?.toUpperCase() || 'U'}</div>
+                        <div class="user-info">
+                            <h3 class="user-name">${escapeHtml(user.full_name)}</h3>
+                            <div class="user-meta">
+                                <span>${escapeHtml(user.email)}</span>
+                                <span class="user-badge badge-${user.user_type}">${user.user_type}</span>
+                                ${user.division && user.district ? `<span>📍 ${escapeHtml(user.area)}, ${escapeHtml(user.district)}</span>` : ''}
+                                ${user.phone ? `<span>📞 ${escapeHtml(user.phone)}</span>` : ''}
+                                <div class="rating-display">
+                                    <span class="stars">${'★'.repeat(Math.round(user.average_rating || 0))}${'☆'.repeat(5 - Math.round(user.average_rating || 0))}</span>
+                                    <span>${user.average_rating ? user.average_rating.toFixed(1) : '0.0'} (${user.total_reviews || 0} reviews)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reviews-section">
+                        <h4 class="reviews-title">Recent Reviews</h4>
+                        ${user.reviews && user.reviews.length > 0 ? 
+                            user.reviews.map(review => `
+                                <div class="review-card">
+                                    <div class="review-header">
+                                        <span class="reviewer-name">${escapeHtml(review.from_user_name)}</span>
+                                        <span class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
+                                    </div>
+                                    ${review.work_title ? `<div class="review-work">Work: ${escapeHtml(review.work_title)}</div>` : ''}
+                                    ${review.comment ? `<div class="review-comment">${escapeHtml(review.comment)}</div>` : '<div class="review-comment" style="color: #718096; font-style: italic;">No comment provided</div>'}
+                                    <div class="review-date">${new Date(review.created_at).toLocaleDateString()}</div>
+                                </div>
+                            `).join('') 
+                            : 
+                            '<div class="no-reviews"><p>No reviews yet</p></div>'
+                        }
+                    </div>
+                    
+                    <div class="user-actions">
+                        <button class="btn btn-outline" onclick="messageUser(${user.id}, '${escapeHtml(user.full_name)}')">
+                            Message
+                        </button>
+                        ${user.user_type === 'worker' ? 
+                            `<button class="btn btn-primary" onclick="viewWorkerProfile(${user.id})">
+                                View Profile
+                            </button>` 
+                            : ''
+                        }
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function messageUser(userId, userName) {
+            if (window.chatSystem) {
+                window.chatSystem.startNewConversation(userId, userName);
+                if (!window.location.pathname.includes('messages.html')) {
+                    window.location.href = 'messages.html';
+                }
+            } else {
+                window.location.href = `messages.html?user=${userId}`;
+            }
+        }
+
+        function viewWorkerProfile(userId) {
+            // This could be expanded to show a detailed worker profile
+            showNotification(`Viewing profile for user ID: ${userId}`, 'info');
+        }
+
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type} show`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 8px;
+                color: white;
+                z-index: 10000;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            if (type === 'success') {
+                notification.style.background = '#48bb78';
+            } else if (type === 'error') {
+                notification.style.background = '#f56565';
+            } else {
+                notification.style.background = '#4299e1';
+            }
+            
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }, 4000);
+        }
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes slideOut {
+                from {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+                to {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

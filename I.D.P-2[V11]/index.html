@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickWork - Find Local Work & Workers</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>QuickWork</h1>
+            <p>Find local work or workers for short-term tasks</p>
+        </div>
+
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="signup">Sign Up</button>
+        </div>
+
+        <form id="loginForm" class="auth-form active">
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Login</button>
+        </form>
+
+        <form id="signupForm" class="auth-form">
+            <div class="form-group">
+                <input type="text" name="full_name" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+                <select name="user_type" required>
+                    <option value="">I want to...</option>
+                    <option value="employer">Hire Workers</option>
+                    <option value="worker">Find Work</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="password" name="password" placeholder="Password" required>
+            </div>
+            
+            <!-- Bangladesh Location Fields -->
+            <div class="form-group">
+                <select name="division" required>
+                    <option value="">Select Division</option>
+                    <option value="dhaka">Dhaka</option>
+                    <option value="chattogram">Chattogram</option>
+                    <option value="rajshahi">Rajshahi</option>
+                    <option value="khulna">Khulna</option>
+                    <option value="barishal">Barishal</option>
+                    <option value="sylhet">Sylhet</option>
+                    <option value="rangpur">Rangpur</option>
+                    <option value="mymensingh">Mymensingh</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" name="district" placeholder="District (e.g., Dhaka, Chittagong)" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="post_code" placeholder="Postal Code (e.g., 1205, 4000)" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="area" placeholder="Local Area/Thana" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        </form>
+
+        <div class="auth-features">
+            <div class="feature">
+                <h3>🔍 Find Local Work</h3>
+                <p>Quick tasks in your area</p>
+            </div>
+            <div class="feature">
+                <h3>💰 Secure Payments</h3>
+                <p>Money held until work completed</p>
+            </div>
+            <div class="feature">
+                <h3>⭐ Rate & Review</h3>
+                <p>Build your reputation</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

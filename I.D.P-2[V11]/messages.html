@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html">Post Work</a></li>
+                <li><a href="applications.html" id="applicationsLink" style="display: none;">Applications</a></li>
+                <li><a href="completed-work.html">Completed Work</a></li>
+                <li><a href="messages.html" class="active">Messages</a></li>
+                <li><a href="user-search.html">Search Users</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Messages</h1>
+            <p>Communicate with employers and workers</p>
+        </div>
+
+        <!-- Quick Start Button -->
+        <div class="quick-action-buttons" style="text-align: center; margin-bottom: 2rem;">
+            <button class="btn btn-primary" onclick="chatSystem.showNewConversationModal()">
+                💬 Start New Conversation
+            </button>
+            <p style="margin-top: 0.5rem; color: #718096;">Search for users by name or email to start chatting</p>
+        </div>
+
+        <div class="chat-container">
+            <div class="conversations-list">
+                <div class="conversations-header">
+                    <h3>Conversations</h3>
+                    <input type="text" id="searchConversations" placeholder="Search conversations...">
+                </div>
+                
+                <!-- Start New Conversation Section -->
+                <div class="start-conversation-section">
+                    <h4>Quick Start</h4>
+                    <div class="quick-contacts" id="quickContacts">
+                        <p>No recent contacts</p>
+                    </div>
+                    <button class="btn btn-outline btn-full" onclick="chatSystem.showNewConversationModal()" style="margin-top: 1rem;">
+                        + New Message
+                    </button>
+                </div>
+
+                <div class="conversations" id="conversationsList">
+                    <div class="loading-state">
+                        <p>Loading conversations...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-window">
+                <div class="chat-header" id="chatHeader">
+                    <div class="chat-user-info">
+                        <div class="avatar" id="chatUserAvatar">💬</div>
+                        <div>
+                            <h4 id="chatUserName">Select a conversation</h4>
+                            <span id="chatUserStatus">Choose someone to message</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="messages-container" id="messagesContainer">
+                    <div class="no-chat-selected">
+                        <p>Select a conversation from the list or start a new one to begin messaging</p>
+                    </div>
+                </div>
+
+                <div class="message-input" style="display: none;" id="messageInputArea">
+                    <div class="input-group">
+                        <input type="text" id="messageText" placeholder="Type your message...">
+                        <button class="btn btn-primary" id="sendMessageBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Conversation Modal -->
+    <div id="newConversationModal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px;">
+            <span class="close-modal" onclick="chatSystem.closeNewConversationModal()">&times;</span>
+            <h2>New Message</h2>
+            <div class="form-group">
+                <input type="text" id="searchUser" placeholder="Search users by name or email..." 
+                       onkeyup="chatSystem.searchUsers(this.value)">
+            </div>
+            <div id="userSearchResults" class="search-results">
+                <p style="text-align: center; color: #718096; padding: 1rem;">Type to search for users</p>
+            </div>
+            <div class="recent-contacts">
+                <h4>Recent Contacts</h4>
+                <div id="recentContactsList">
+                    <p style="text-align: center; color: #718096; padding: 1rem;">No recent contacts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/chat.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

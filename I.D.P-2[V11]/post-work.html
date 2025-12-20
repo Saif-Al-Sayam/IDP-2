@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Work - QuickWork</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">QuickWork</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="search.html">Find Work</a></li>
+                <li><a href="post-work.html" class="active">Post Work</a></li>
+                <li><a href="applications.html" id="applicationsLink" style="display: none;">Applications</a></li>
+                <li><a href="completed-work.html">Completed Work</a></li>
+                <li><a href="messages.html">Messages</a></li>
+                <li><a href="user-search.html">Search Users</a></li>
+                <li><a href="profile.html">Profile</a></li>
+            </ul>
+            <div class="user-menu" id="userMenu">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1>Post New Work</h1>
+            <p>Find the right person for your task</p>
+        </div>
+
+        <div class="form-container">
+            <form id="postWorkForm">
+                <div class="form-group">
+                    <label>Work Title *</label>
+                    <input type="text" name="title" placeholder="e.g., Need help with grocery delivery" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <select name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="delivery">Delivery</option>
+                            <option value="cleaning">Cleaning</option>
+                            <option value="repair">Repair/Maintenance</option>
+                            <option value="teaching">Teaching/Tutoring</option>
+                            <option value="event">Event Help</option>
+                            <option value="sales">Sales Assistance</option>
+                            <option value="cooking">Cooking/Food Prep</option>
+                            <option value="farming">Farming/Gardening</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Budget (৳) *</label>
+                        <input type="number" name="budget" placeholder="e.g., 500" min="0" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Work Description *</label>
+                    <textarea name="description" placeholder="Describe the work in detail..." required rows="5"></textarea>
+                </div>
+
+                <!-- Bangladesh Location Fields -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Division *</label>
+                        <select name="division" required>
+                            <option value="">Select Division</option>
+                            <option value="dhaka">Dhaka</option>
+                            <option value="chattogram">Chattogram</option>
+                            <option value="rajshahi">Rajshahi</option>
+                            <option value="khulna">Khulna</option>
+                            <option value="barishal">Barishal</option>
+                            <option value="sylhet">Sylhet</option>
+                            <option value="rangpur">Rangpur</option>
+                            <option value="mymensingh">Mymensingh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>District *</label>
+                        <input type="text" name="district" placeholder="e.g., Dhaka, Chittagong" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Postal Code *</label>
+                        <input type="text" name="post_code" placeholder="e.g., 1205, 4000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Area/Thana *</label>
+                        <input type="text" name="area" placeholder="e.g., Mohammadpur, Uttara" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Duration</label>
+                        <input type="text" name="duration" placeholder="e.g., 2 hours, 1 day">
+                    </div>
+                    <div class="form-group">
+                        <label>Urgency</label>
+                        <select name="urgency">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Post Work</button>
+                    <button type="button" class="btn btn-outline" onclick="window.history.back()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
